@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<% extend ERB::Util %>
+		<meta http-equiv="Content-Type" content="text/html; charset=<%=@options.charset%>">
+		<meta http-equiv="Content-Style-Type" content="text/css">
+		<meta http-equiv="Content-Script-Type" content="text/javascript">
+
+		<link rel="stylesheet" type="text/css" href="<%=values["style_url"]%>" media="screen,tv"/>
+
+		<!-- <script type="text/javascript" src="/site-script.js"></script> -->
+		<title><%=values["title"]%></title>
+	</head>
+	<body>
+		<div id="whole">
+			<h1 id="top"><%=values["title"]%></h1>
+			<div class="file-information">
+				<p class="shot-name">
+				<%=values["short_name"]%>
+				</p>
+
+				<dl>
+					<dt>Full Path:</dt>
+					<dd class="full-path-url">
+						<%=values["full_path"]%>
+					</dd>
+				</dl>
+			</div>
+
+			<div id="content">
+				<% if values["diagram"]%>
+				<div class="diagram">
+					<%=values["diagram"]%>
+				</div>
+				<% end %>
+
+				<% if values["description"]%>
+				<div class="description">
+					<%=values["description"]%>
+				</div>
+				<% end %>
+
+				<% if values["requires"]%>
+				<div class="requires-list">
+					<h2>Required files</h2>
+
+					<ul class="requires">
+						<% values["requires"].each do |i| %>
+						<li><a href="#<%=i["aref"]%>"><%=i["name"]%></a></li>
+						<% end %>
+					</ul>
+				</div>
+				<% end %>
+
+				<% if values["toc"]%>
+				<div class="toc">
+					<h2>Contents</h2>
+					<ul>
+						<% values["toc"].each do |i| %>
+						<li><a href="#<%=i["href"]%>"><%=i["secname"]%></a></li>
+						<% end %>
+					</ul>
+				</div>
+				<% end %>
+
+				<% if values["methods"]%>
+				<div class="method-list">
+					<h2>Methods</h2>
+
+					<ul class="methods">
+						<% values["methods"].each do |i| %>
+						<li><a href="#<%=i["aref"]%>"><%=i["name"]%></a></li>
+						<% end %>
+					</ul>
+				</div>
+				<% end %>
+
+				<!-- if includes -->
+				<% if values["includes"]%>
+				<div id="includes">
+					<h2>Included Modules</h2>
+
+					<ul class="includes">
+						<% values["includes"].each do |i| %>
+						<li><a href="<%=i["aref"]%>"><%=i["name"]%></a></li>
+						<% end %>
+					</div>
+				</div>
+				<% end %>
+
+				<!-- sections -->
+				<% values["sections"].each do |sec| %>
+				<div class="section" id="<%=sec["sectitle"]%>">
+					<% if sec["sectitle"] %>
+					<h2><%=sec["sectitle"]%></a></h2>
+					<% if sec["seccomment"] %>
+					<div class="section-comment">
+						<%=sec["seccomment"]%>
+					</div>      
+					<% end %>
+					<% end %>
+
+					<% if sec["classlist"] %>
+					<div id="class-list">
+						<h2>Classes and Modules</h2>
+
+						<%=sec["classlist"]%>
+					</div>
+					<% end %>
+
+					<% if sec["constants"] %>
+					<div id="constants-list">
+						<h2>Constants</h2>
+
+						<dl class="constants">
+							<% sec["constants"].each do |c| %>
+							<dt><%=c["name"]%></dt>
+							<dd><code><%=c["value"]%></code></dd>
+							<% if c["desc"] %><dd><%=c["desc"]%></dd><% end %>
+							<% end %>
+						</dl>
+					</div>
+					<% end %>
+
+					<% if sec["aliases"] %>
+					<div class="aliases-list">
+						<h2>External Aliases</h2>
+
+						<dl class="aliases">
+							<% sec["aliases"].each do |a| %>
+							<dt><code><%=a["old_name"]%></code>-><code><%=a["new_name"]%></code></dt>
+							<% if a["desc"] %><dd><%= a["desc"] %></dd><% end %>
+							<% end %>
+						</dl>
+					</div>
+					<% end %>
+
+
+					<% if sec["attributes"] %>
+					<div class="attribute-list">
+						<h2>Attributes</h2>
+
+						<dl class="attributes">
+							<% sec["attributes"].each do |a| %>
+							<dt><%=a["name"]%> <% if a["rw"]; %><span class="perm">[<%=a["rw"]%>]</span><% ;end %></dt>
+							<dd><%=a["a_desc"]%></dd>
+							<% end %>
+						</dl>
+					</div>
+					<% end %>
+
+					<!-- method_list -->
+					<% if sec["method_list"] %>
+					<div class="methods">
+						<% sec["method_list"].each do |ml| %>
+						<% if ml["methods"] %>
+						<h2><%=ml["type"]%> <%=ml["category"]%> methods</h2>
+
+						<% ml["methods"].each do |m| %>
+						<div id="method-%aref%" class="method-detail" id="<%=m["aref"]%>">
+							<div class="method-heading">
+								<a href="#<%=m["aref"]%>" class="method-signature">
+									<% if m["callseq"]%>
+									<span class="method-name"><%=m["callseq"]%></span>
+									<% else %>
+									<span class="method-name"><%=m["name"]%></span><span class="method-args"><%=m["params"]%></span>
+									<% end %>
+								</a>
+							</div>
+
+							<div class="method-description">
+								<%=m["m_desc"]%>
+<% if m["sourcecode"]%>
+<pre class="source" onclick="this.className=this.className=='source'?'source clicked':'source'" title="Click to see code">
+<%=m["sourcecode"]%>
+</pre>
+<% end %>
+
+<% if m["codeurl"] %>
+<a href="<%=m["codeurl"]%>" class="code-url">source</a>
+<% end %>
+							</div>
+						</div>
+
+						<% end %>
+						<% end %>
+						<% end %>
+					</div>
+					<!-- /method-list -->
+					<% end %>
+				</div>
+				<% end %>
+				<!-- /sections -->
+			</div>
+			<!-- /#content -->
+
+			<div id="footer">
+				<p>Original Document Last-modified: <%=values["dtm_modified"]%></p>
+				<p>Created at: <%=require "time"; Time.now.xmlschema %></p>
+				<p>Powerd by <span class="ruby-r">R</span>Doc / <span class="ruby-r">R</span>uby / ruby<%=RUBY_VERSION%></p>
+			</div>
+		</div>
+	</body>
+</html>
+

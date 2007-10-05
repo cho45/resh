@@ -1,0 +1,157 @@
+body {
+	line-height: 1.66;
+	padding: 0 5%;
+	background: #fff;
+	color: #000;
+}
+
+a:link {
+	color: #006699;
+}
+
+a:visited {
+	color: #666699;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+dt {
+	font-weight: bold;
+	margin: 1em 0 0 0;
+}
+
+h2 {
+	font-variant: small-caps;
+	color: #006699;
+}
+
+h3 {
+	margin: 0.5em 0 1em 0;
+}
+
+h3 a:link ,
+h3 a:visited ,
+h3 a:hover {
+	text-decoration: none;
+	color: #000;
+}
+
+pre {
+	border: 1px solid #ccc;
+	background: #eee;
+	padding: 1em 2em;
+	overflow: auto;
+	font-size: 80%;
+	line-height: 1.33;
+}
+
+pre.source {
+	height: 0;
+	overflow: hidden;
+	border: 1px solid #eee;
+	background: #f9f9f9;
+	color: #f9f9f9;
+}
+
+pre.source.clicked {
+	height: auto;
+	overflow: auto;
+	color: #000;
+}
+
+.readme {
+	background: #f9f9f9;
+	border: 1px solid #eee;
+	padding: 1em;
+}
+
+.index-files,
+.index-classes {
+	clear: both;
+}
+
+.index-files .file,
+.index-classes .class {
+	width: 20em;
+	float: left;
+	margin: 1em;
+	padding: 0 0.5em;
+	background: #efefef;
+	border: 1px solid #ccc;
+	overflow: hidden;
+}
+
+.full-name .classmod {
+	font-size: 80%;
+	color: #999;
+}
+
+.readme-information,
+.file-information,
+.class-information {
+	font-size: 80%;
+	text-align: right;
+	float: right;
+	border: 1px solid #ccc;
+	background: #efefef;
+	padding: 0 1em 1em;
+}
+
+.readme-information dl,
+.file-information dl,
+.class-information dl {
+	margin: 0;
+	padding: 0;
+}
+
+.readme-information dl dt,
+.file-information dl dt,
+.class-information dl dt {
+	margin: 0;
+	padding: 0;
+}
+
+.readme-information dl dd,
+.file-information dl dd,
+.class-information dl dd {
+	margin: 0;
+	padding: 0;
+}
+
+.attributes .perm {
+	font-style: normal;
+	font-size: 80%;
+	color: #666;
+}
+
+.method-name {
+	font-weight: bold;
+}
+
+a.method-signature:link ,
+a.method-signature:visited ,
+a.method-signature:hover ,
+a.method-signature {
+	text-decoration: none;
+}
+
+#footer {
+	clear: both;
+	margin: 4em 0 1em 0;
+	padding: 0.5em 1em;
+	text-align: right;
+	font-size: 80%;
+	color: #333;
+}
+
+#footer p {
+	margin: 0;
+	padding: 0;
+}
+
+.ruby-r {
+	color: #b72134;
+	font-weight: bold;
+}
