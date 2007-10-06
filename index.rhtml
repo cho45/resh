@@ -44,9 +44,21 @@
 						next unless c.document_self
 						next if c.name.empty?
 						cv = c.value_hash
+						constants = cv["sections"].inject([]) {|r,i|
+							r.concat(i["constants"].map {|j| j["name"]}) if i["constants"]
+							r
+						}
 					%>
+						<% if cv["methods"] || !constants.empty? %>
 						<div class="class">
 							<h3><a href="<%="#{c.path}"%>"><%= c.name %></a></h3>
+							<% unless constants.empty? %>
+							<ul>
+								<% constants.each do |m| %>
+								<li><%=h m%></li>
+								<% end %>
+							</ul>
+							<% end %>
 							<% if cv["methods"] %>
 							<ul>
 								<% cv["methods"].sort_by{|i| i["name"]}.each do |m| %>
@@ -55,6 +67,7 @@
 							</ul>
 							<% end %>
 						</div>
+						<% end %>
 					<% end %>
 				</div>
 				<div class="index-files">
