@@ -89,7 +89,7 @@
 
 					<ul class="methods">
 						<% values["methods"].each do |i| %>
-						<li><a href="#<%=i["aref"]%>"><%=i["name"]%></a></li>
+						<li><a href="<%=i["aref"]%>"><%=i["name"]%></a></li>
 						<% end %>
 					</ul>
 				</div>
@@ -178,7 +178,7 @@
 						<h2><%=ml["type"]%> <%=ml["category"]%> methods</h2>
 
 						<% ml["methods"].each do |m| %>
-						<div id="method-%aref%" class="method-detail" id="<%=m["aref"]%>">
+						<div class="method-detail" id="<%=m["aref"]%>">
 							<div class="method-heading">
 								<a href="#<%=m["aref"]%>" class="method-signature">
 									<% if m["callseq"]%>
