@@ -12,8 +12,9 @@
 		<title><%=values["title"]%></title>
 	</head>
 	<body>
+		<% index = Pathname.new("").relative_path_from(Pathname.new(f.path).parent) + "index.html"%>
 		<div id="whole">
-			<h1 id="top"><%=values["title"]%></h1>
+			<h1 id="top"><a href="<%=index%>"><%=values["title"]%></a></h1>
 			<div class="class-information">
 				<p class="full-name">
 				<%=values["full_name"]%>
@@ -213,7 +214,9 @@
 			</div>
 
 			<div id="footer">
-				<p>Created at: <%=require "time"; Time.now.xmlschema %></p>
+				<% require "time" %>
+				<p class="footer-links"><a href="<%=index%>">&lt;Index</a> <a href="#top">Top^</a></p>
+				<p>Created at: <%=Time.now.xmlschema %></p>
 				<p>Powerd by <span class="ruby-r">R</span>Doc / <span class="ruby-r">R</span>uby / ruby<%=RUBY_VERSION%></p>
 			</div>
 		</div>

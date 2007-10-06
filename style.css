@@ -61,6 +61,16 @@ pre.source.clicked {
 	color: #000;
 }
 
+#top {
+}
+
+#top a:link ,
+#top a:visited ,
+#top a:hover {
+	color: #000;
+	text-decoration: none;
+}
+
 .readme {
 	background: #f9f9f9;
 	border: 1px solid #eee;
@@ -70,6 +80,11 @@ pre.source.clicked {
 .index-files,
 .index-classes {
 	clear: both;
+}
+
+.index-files h3,
+.index-classes h3 {
+	margin: 0.5em 0.5em 1em 0.5em;
 }
 
 .index-files .file,

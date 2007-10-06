@@ -12,8 +12,9 @@
 		<title><%=values["title"]%></title>
 	</head>
 	<body>
+		<% index = Pathname.new("").relative_path_from(Pathname.new(f.path).parent) + "index.html"%>
 		<div id="whole">
-			<h1 id="top"><%=values["title"]%></h1>
+			<h1 id="top"><a href="<%=index%>"><%=values["title"]%></a></h1>
 			<div class="file-information">
 				<p class="shot-name">
 				<%=values["short_name"]%>
@@ -195,8 +196,10 @@
 			<!-- /#content -->
 
 			<div id="footer">
-				<p>Original Document Last-modified: <%=values["dtm_modified"]%></p>
-				<p>Created at: <%=require "time"; Time.now.xmlschema %></p>
+				<% require "time" %>
+				<p class="footer-links"><a href="<%=index%>">&lt;Index</a> <a href="#top">Top^</a></p>
+				<p>Original Document Last-modified: <%=Time.parse(values["dtm_modified"]).xmlschema%></p>
+				<p>Created at: <%=Time.now.xmlschema %></p>
 				<p>Powerd by <span class="ruby-r">R</span>Doc / <span class="ruby-r">R</span>uby / ruby<%=RUBY_VERSION%></p>
 			</div>
 		</div>
