@@ -155,3 +155,35 @@ a.method-signature {
 	color: #b72134;
 	font-weight: bold;
 }
+
+/*
+ * source code coloring
+ */
+
+.ruby-comment {
+	color: #666;
+}
+
+.ruby-keyword {
+	color: #006699;
+}
+
+.ruby-identifier {
+}
+
+.ruby-ivar {
+	color: #990000;
+}
+
+.ruby-constant {
+	color: #990000;
+}
+
+.ruby-node {
+	color: #006633;
+}
+
+.ruby-operator {
+}
+
+
