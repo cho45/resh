@@ -1,0 +1,38 @@
+
+= resh
+
+
+== Description
+
+Resh is a HTML template for RDoc.
+
+http://coderepos.org/share/wiki/Resh
+
+== Installation
+
+=== Archive Installation
+
+	rake install
+
+=== Gem Installation
+
+	gem install resh
+
+
+== Features/Problems
+
+RubyGems install this to GEMHOME, so raw rdoc command is not able to find
+'resh'. In like this case, use RUBYOPT to load rubygems
+
+	RUBYOPT="-rubygems" rdoc --template resh foobar
+
+Any other gem loaded context, above option is not required.
+
+* Rake::RDocTask
+* ~/.gemrc
+
+== Copyright
+
+Author::    cho45 <cho45@lowreal.net>
+Copyright:: Copyright (c) 2007 cho45
+License::   Ruby's
