@@ -62,12 +62,18 @@ pre.source.clicked {
 }
 
 #top {
+	font-size: 500%;
+	line-height: 0.7;
+	margin: 0 -0.1em;
+	padding: 0;
+	color: #d9d9d9;
+	letter-spacing: -0.1em;
 }
 
 #top a:link ,
 #top a:visited ,
 #top a:hover {
-	color: #000;
+	color: #d9d9d9;
 	text-decoration: none;
 }
 
