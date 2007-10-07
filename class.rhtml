@@ -214,10 +214,18 @@
 			</div>
 
 			<div id="footer">
-				<% require "time" %>
 				<p class="footer-links"><a href="<%=index%>">&lt;Index</a> <a href="#top">Top^</a></p>
-				<p>Created at: <%=Time.now.xmlschema %></p>
-				<p>Powerd by <span class="ruby-r">R</span>Doc / <span class="ruby-r">R</span>uby / ruby<%=RUBY_VERSION%></p>
+				<p>Created at: <%=require "time"; Time.now.xmlschema %></p>
+				<p>
+					Powerd by
+					<span class="ruby-r">R</span>Doc
+					(
+					template: <a href="http://coderepos.org/share/wiki/Resh">Resh</a>
+					)
+					/
+					<span class="ruby-r">R</span>uby /
+					ruby<%=RUBY_VERSION%>
+				</p>
 			</div>
 		</div>
 	</body>
