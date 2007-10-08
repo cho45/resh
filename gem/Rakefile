@@ -5,7 +5,9 @@ require 'rake/testtask'
 require 'rake/packagetask'
 require 'rake/gempackagetask'
 require 'rake/rdoctask'
+require 'rake/contrib/sshpublisher'
 require 'rake/contrib/rubyforgepublisher'
+require 'rubyforge'
 require 'fileutils'
 include FileUtils
 
@@ -14,7 +16,7 @@ AUTHOR = "cho45"
 EMAIL = "cho45@lowreal.net"
 DESCRIPTION = "A RDoc template."
 RUBYFORGE_PROJECT = "lowreal"
-HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org/#{NAME}/"
+HOMEPATH = "http://coderepos.org/share/wiki/Resh"
 BIN_FILES = %w(  )
 VERS = "0.0.1"
 
@@ -105,11 +107,10 @@ end
 
 desc "Publish to RubyForge"
 task :rubyforge => [:rdoc, :package] do
-	SshDirPublisher.new(
-		"cho45@rubyforge.org",
-		"/var/www/gforge-projects/#{RUBYFORGE_PROJECT}/#{NAME}",
-		"html"
-	).upload
+	@local_dir = "html"
+	@host = "cho45@rubyforge.org"
+	@remote_dir = "/var/www/gforge-projects/#{RUBYFORGE_PROJECT}/#{NAME}"
+	sh %{scp -rq #{@local_dir} #{@host}:#{@remote_dir}}
 end
 
 desc 'Package and upload the release to rubyforge.'

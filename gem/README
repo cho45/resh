@@ -29,7 +29,25 @@ RubyGems install this to GEMHOME, so raw rdoc command is not able to find
 Any other gem loaded context, above option is not required.
 
 * Rake::RDocTask
+
+	Rake::RDocTask.new do |rdoc|
+		rdoc.rdoc_dir = 'html'
+		rdoc.options += RDOC_OPTS
+		rdoc.template = "resh"
+		if ENV['DOC_FILES']
+			rdoc.rdoc_files.include(ENV['DOC_FILES'].split(/,¥s*/))
+		else
+			rdoc.rdoc_files.include('README', 'Changelog')
+			rdoc.rdoc_files.include('examples/simple.rb')
+			rdoc.rdoc_files.include('lib/**/*.rb')
+			rdoc.rdoc_files.include('ext/**/*.c')
+		end
+	end
+
+
 * ~/.gemrc
+
+	rdoc: --template resh
 
 == Copyright
 
