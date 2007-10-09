@@ -85,7 +85,7 @@ class ::Generators::HTMLGenerator
 
 	# Not used
 	def gen_an_index(collection, title, template, filename)
-		return
+		return unless RDoc::Page.constants.include? title.upcase
 		res = []
 		collection.sort.each do |f|
 			if f.document_self
@@ -100,12 +100,9 @@ class ::Generators::HTMLGenerator
 			'charset'    => @options.charset,
 			'style_url'  => style_url('', @options.css),
 		}
-		begin
-			File.open(filename, "w") {|f|
-				f << ERB.new(File.read($tmpl+RDoc::Page.const_get(title.upcase))).result(binding)
-			}
-		rescue NameError
-		end
+		File.open(filename, "w") {|f|
+			f << ERB.new(File.read($tmpl+RDoc::Page.const_get(title.upcase))).result(binding)
+		}
 	end
 
 	def gen_main_index
