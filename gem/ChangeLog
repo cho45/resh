@@ -1,3 +1,8 @@
+2007-10-09  SATOH Hiroh <cho45@lowreal.net>
+
+	* release 0.0.2:
+	Comment outed unused method.
+
 2007-10-08  SATOH Hiroh <cho45@lowreal.net>
 
 	* init

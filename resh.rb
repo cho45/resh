@@ -83,7 +83,9 @@ class ::Generators::HTMLGenerator
 		}
 	end
 
+	# Not used
 	def gen_an_index(collection, title, template, filename)
+		return
 		res = []
 		collection.sort.each do |f|
 			if f.document_self
