@@ -110,7 +110,7 @@ task :rubyforge => [:rdoc, :package] do
 	@local_dir = "html"
 	@host = "cho45@rubyforge.org"
 	@remote_dir = "/var/www/gforge-projects/#{RUBYFORGE_PROJECT}/#{NAME}"
-	sh %{scp -rq #{@local_dir} #{@host}:#{@remote_dir}}
+	sh %{rsync -r --delete --verbose #{@local_dir}/ #{@host}:#{@remote_dir}}
 end
 
 desc 'Package and upload the release to rubyforge.'

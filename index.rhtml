@@ -24,7 +24,7 @@
 				%>
 				<div class="readme">
 					<div class="readme-information">
-						<p class="shot-name">
+						<p class="short-name">
 						<%=r["short_name"]%>
 						</p>
 
@@ -40,7 +40,7 @@
 				<% end %>
 				<div class="index-classes">
 					<h2>Classes/Modules</h2>
-					<% @classes.sort.each do |c| 
+					<% @classes.sort.each do |c|
 						next unless c.document_self
 						next if c.name.empty?
 						cv = c.value_hash

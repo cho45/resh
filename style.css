@@ -118,6 +118,7 @@ pre.source.clicked {
 	border: 1px solid #ccc;
 	background: #efefef;
 	padding: 0 1em 1em;
+	margin: 2em 0 0 1em;
 }
 
 .readme-information dl,
