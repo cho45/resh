@@ -1,3 +1,10 @@
+2007-10-11  SATOH Hiroh <cho45@lowreal.net>
+
+	* release 0.0.3:
+	 * Fixed information block margin.
+	 * Fixed typo on index.rhtml.
+
+
 2007-10-09  SATOH Hiroh <cho45@lowreal.net>
 
 	* release 0.0.2:
