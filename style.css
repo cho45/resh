@@ -208,4 +208,7 @@ a.method-signature {
 .ruby-operator {
 }
 
-
+<% path = ENV["RESH_ADDITIONAL_STYLE_FILE"] %>
+<% if path && File.exist?(path) %>
+<%=File.read(path)%>
+<% end %>

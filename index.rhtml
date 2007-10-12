@@ -22,7 +22,7 @@
 				if readme
 					r = readme.value_hash
 				%>
-				<div class="readme">
+				<div class="readme" id="readme">
 					<div class="readme-information">
 						<p class="short-name">
 						<%=r["short_name"]%>
@@ -38,7 +38,7 @@
 					<%=r["description"]%>
 				</div>
 				<% end %>
-				<div class="index-classes">
+				<div class="index-classes" id="classes">
 					<h2>Classes/Modules</h2>
 					<% @classes.sort.each do |c|
 						next unless c.document_self
@@ -70,7 +70,7 @@
 						<% end %>
 					<% end %>
 				</div>
-				<div class="index-files">
+				<div class="index-files" id="files">
 					<h2>Files</h2>
 					<ul>
 						<% @files.sort.each do |f| 

@@ -1,11 +1,17 @@
 #!rdoc --charset utf-8 --template ~/coderepos/lang/ruby/rdoc/generators/template/html/resh/resh.rb /usr/lib/ruby/gems/1.8/gems/rake-0.7.3/{README,lib/*,doc/*}
-#!rdoc --charset utf-8 --inline-source --template ~/coderepos/lang/ruby/rdoc/generators/template/html/erbdeyareyo.rb /opt/ruby1.8.5/lib/ruby/1.8/rdoc/*.rb
+#
+# Overides all methods using TemplatePage
+# to use ERB instead of it.
 
-require "pp"
+require "rdoc/rdoc"
 require "erb"
 require "pathname"
 
+$tmpl = Pathname.new(__FILE__).parent
+
 class ::TemplateFile
+	# TemplateFile.new raise error.
+	# It's best to be as safe as possible.
 	def initialize
 		raise "DO NOT USE"
 	end
@@ -16,7 +22,6 @@ module ::RDoc::Page
 	CLASS_INDEX  = ""
 	METHOD_INDEX = ""
 end
-$tmpl = Pathname.new(__FILE__).parent
 
 p ::Generators::HtmlClass
 class ::Generators::HtmlClass
@@ -69,13 +74,21 @@ end
 
 p ::Generators::HTMLGenerator
 class ::Generators::HTMLGenerator
-	alias :orig_generate :generate
-	def generate(*args)
+	# Overrides generate method to
+	# change order of processing.
+	# write_style_sheet should be processed at last.
+	def generate(toplevels)
 		@options.instance_eval "@inline_source = true"
-		orig_generate(*args)
+		@toplevels  = toplevels
+		@files      = []
+		@classes    = []
+
+		gen_sub_directories()
+		build_indices
+		generate_html
+		write_style_sheet
 	end
 
-	# TemplatePage をつかっているのをぬきだしてきたやつ
 	def write_style_sheet
 		return unless defined? RDoc::Page::STYLE
 		File.open(::Generators::CSS_NAME, "w") {|f|
@@ -121,8 +134,9 @@ class ::Generators::HTMLGenerator
 		end
 	end
 
+	# Not used.
 	def generate_xml
-		values = { 
+		values = {
 			'charset' => @options.charset,
 			'files'   => gen_into(@files),
 			'classes' => gen_into(@classes),

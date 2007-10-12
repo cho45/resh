@@ -11,25 +11,27 @@ require 'rubyforge'
 require 'fileutils'
 include FileUtils
 
-NAME = "resh"
-AUTHOR = "cho45"
-EMAIL = "cho45@lowreal.net"
-DESCRIPTION = "A RDoc template."
+NAME              = "resh"
+AUTHOR            = "cho45"
+EMAIL             = "cho45@lowreal.net"
+DESCRIPTION       = "A RDoc template."
 RUBYFORGE_PROJECT = "lowreal"
-HOMEPATH = "http://coderepos.org/share/wiki/Resh"
-BIN_FILES = %w(  )
-VERS = "0.0.3"
+HOMEPATH          = "http://coderepos.org/share/wiki/Resh"
+BIN_FILES         = %w(  )
+VERS              = "0.0.3"
 
 REV = File.read(".svn/entries")[/committed-rev="(d+)"/, 1] rescue nil
 CLEAN.include ['**/.*.sw?', '*.gem', '.config']
 CLOBBER.include ['lib/rdoc/generators/template/html/resh/*']
-RDOC_OPTS = ['--title', "#{NAME} documentation",
+RDOC_OPTS = [
+	'--title', "#{NAME.capitalize} documentation",
 	"--charset", "utf-8",
 	"--opname", "index.html",
 	"--line-numbers",
 	"--main", "README",
 	"--inline-source",
 ]
+ENV["RESH_ADDITIONAL_STYLE_FILE"] = Pathname.new("rdoc.css").realpath(true)
 
 desc "Packages up #{NAME} gem."
 task :default => [:test]
